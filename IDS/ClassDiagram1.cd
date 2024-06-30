@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Component" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAABAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IDS" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAFAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>IDS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyNetAnalyzer" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAQAI=</HashCode>
+      <FileName>MyNetAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetConf" Collapsed="true">
+    <Position X="9.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAQAAgAAAABABAAAAAAAAAAAQgAgAAIAAAA=</HashCode>
+      <FileName>NetConf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAQEAAAAgAAAKAAgAAiAAAAkIAAABiA=</HashCode>
+      <FileName>Rule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.346" Collapsed="true" />
+  </Class>
+  <Class Name="RuleManager" Collapsed="true">
+    <Position X="7" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAIAAAAAAEAAAAAAAAAAAIAAgEQAAABAAAAAgAA=</HashCode>
+      <FileName>RuleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrafficMonitor" Collapsed="true">
+    <Position X="7" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAJAAAAAwCAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>TrafficMonitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

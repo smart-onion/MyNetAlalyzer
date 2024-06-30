@@ -1,0 +1,20 @@
+[
+  {
+    "IP": null,
+    "Port": null,
+    "MACAddress": null,
+    "IsAllowed": false
+  },
+  {
+    "IP": null,
+    "Port": null,
+    "MACAddress": null,
+    "IsAllowed": false
+  },
+  {
+    "IP": "9.21.20.35",
+    "Port": null,
+    "MACAddress": "",
+    "IsAllowed": false
+  }
+]

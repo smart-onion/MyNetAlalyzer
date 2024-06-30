@@ -1,0 +1,93 @@
+@startuml
+abstract class Component {
+    # config : NetConf
+    + Component()
+    + {abstract} Start(parameters:object[]) : void
+    + {abstract} Stop() : void
+    + {abstract} Configure() : void
+}
+class IDS {
+    - trafficMonitor : TrafficMonitor
+    + IDS()
+    + <<override>> Start(param:object[]) : void
+    + <<override>> Stop() : void
+    + <<override>> Configure() : void
+}
+Component <|-- IDS
+class MyNetAnalyzer {
+    - component : Component
+    + MyNetAnalyzer()
+    + Run() : void
+    + DisplayComponents() : void
+    + SelectComponent() : void
+    + SelectActionOnComponent() : void
+}
+class NetConf {
+    - device : ICaptureDevice
+    - ruleManager : RuleManager
+    + RuleManager : RuleManager <<get>>
+    + Device : ICaptureDevice <<get>> <<set>>
+    + NetConf()
+    + LoadConfiguration() : void
+    + LoadDeviceConfiguration(filename:string) : void
+    + ConfigureRules() : void
+    + SelectNetworkDevice() : void
+    + {static} SaveConfigurations(obj:object, filename:string) : void
+}
+class Program {
+    - {static} Main(args:string[]) : void
+}
+class Rule {
+    - ip : IPAddress?
+    - port : int?
+    - macAddress : string?
+    - isAllowed : bool
+    + IP : IPAddress? <<get>> <<set>>
+    + Port : int? <<get>> <<set>>
+    + MACAddress : string? <<get>> <<set>>
+    + IsAllowed : bool <<get>> <<set>>
+    + Rule()
+    + Rule(ip:string?, port:int?, mac:string?, allowed:bool)
+    + SetIPAddress(ipAddress:string?) : void
+    + SetIPAddress(ipAddress:IPAddress?) : void
+    + SetPort(port:int?) : void
+    + SetMACAddress(mac:string?) : void
+    + SetIsAllowed(allowed:bool) : void
+    + <<override>> ToString() : string
+    + CompareTo(other:Rule?) : int
+}
+class CompareByIP {
+    + Compare(x:IPAddress?, y:IPAddress?) : int
+}
+"IComparable`1" "<Rule>" <|-- Rule
+Rule +-- CompareByIP
+"IComparer`1" "<IPAddress>" <|-- CompareByIP
+class RuleManager {
+    - rules : List<Rule>
+    - filePath : string
+    + Rules : List<Rule> <<get>>
+    - FilePath : string <<get>> <<set>>
+    + RuleManager(filePath:string)
+    + ReadRules() : List<Rule>
+    + WriteRules() : void
+    + AddRule() : void
+    + RemoveRules() : void
+    + ShowRules() : void
+}
+class IPAddressConverter {
+    + <<override>> Read(reader:Utf8JsonReader, typeToConvert:Type, options:JsonSerializerOptions) : IPAddress
+    + <<override>> Write(writer:Utf8JsonWriter, value:IPAddress, options:JsonSerializerOptions) : void
+}
+RuleManager +-- IPAddressConverter
+"JsonConverter`1" "<IPAddress>" <|-- IPAddressConverter
+class TrafficMonitor {
+    - config : NetConf
+    - packets : List<Packet>
+    - Packets : List<Packet> <<get>>
+    +  <<event>> OnFilter : FilterHandler 
+    + TrafficMonitor(conf:NetConf)
+    - OnPacketArrival(sender:object, e:PacketCapture) : void
+    + CaptureTraffic() : void
+    - FilterTraffic(packet:IPPacket) : void
+}
+@enduml
