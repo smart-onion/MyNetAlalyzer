@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IDS" Collapsed="true">
-    <Position X="9.25" Y="3" Width="1.5" />
+    <Position X="7.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAFAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>IDS.cs</FileName>
@@ -24,30 +24,50 @@
   <Class Name="NetConf" Collapsed="true">
     <Position X="9.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAQAAgAAAABABAAAAAAAAAAAQgAgAAIAAAA=</HashCode>
+      <HashCode>AAAAAAACAAQAAgAAAABABAAAAAAAAAAAQgBgAAIAAAA=</HashCode>
       <FileName>NetConf.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rule" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4.75" Y="3" Width="1.5" />
+    <Position X="2.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAQEAAAAgAAAKAAgAAiAAAAkIAAABiA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAAEgAAAgAAAKAAgAAiAAAAkIAAABiA=</HashCode>
       <FileName>Rule.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.346" Collapsed="true" />
   </Class>
   <Class Name="RuleManager" Collapsed="true">
-    <Position X="7" Y="3" Width="1.5" />
+    <Position X="2.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAIAAAAAAEAAAAAAAAAAAIAAgEQAAABAAAAAgAA=</HashCode>
       <FileName>RuleManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TrafficMonitor" Collapsed="true">
-    <Position X="7" Y="4.25" Width="1.5" />
+  <Class Name="TrafficMonitor">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="TrafficMonitor.FilterHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TrafficMonitor.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAACAAJAAAAAwCAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>TrafficMonitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IPScanner" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAABAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>IPScanner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PortScanner" Collapsed="true">
+    <Position X="11.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAABAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>PortScanner.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

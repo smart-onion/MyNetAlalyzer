@@ -8,13 +8,17 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 
-public class Rule : IComparable<Rule>
+public class Rule
 {
+    string name;
     IPAddress? ip;
     int? port;
-    string? macAddress;
+    PhysicalAddress? macAddress;
     bool isAllowed;
+    
+    public string Name { get => this.name; set { this.name = value; } }
 
     public IPAddress? IP
     { 
@@ -34,12 +38,12 @@ public class Rule : IComparable<Rule>
         }
     }
 
-    public string? MACAddress
+    public PhysicalAddress? MACAddress
     {
         get => this.macAddress;
         set
         {
-            SetMACAddress(value);
+            this.macAddress = value;
         }
     }
 
@@ -53,24 +57,17 @@ public class Rule : IComparable<Rule>
     }
 
     // c-tors
+    [JsonConstructor]
+    public Rule(string name) : this(name, null, null, null, false) { }
 
-    public Rule() : this(null, null, null, false) { }
-
-    public Rule(string? ip, int? port, string? mac, bool allowed)
+    public Rule(string name, string? ip, int? port, string? mac, bool allowed)
     {
+        Name = name;
         SetIPAddress(ip);
         SetPort(port);
         SetMACAddress(mac);
         SetIsAllowed(allowed);
      }
-    /*
-    public Rule(IPAddress? ip, int? port, string? mac, bool allowed)
-    {
-        SetIPAddress(ip);
-        SetPort(port);
-        SetMACAddress(mac);
-        SetIsAllowed(allowed);
-    }*/
 
     // setters
     public void SetIPAddress(string? ipAddress)
@@ -97,7 +94,11 @@ public class Rule : IComparable<Rule>
 
     public void SetMACAddress(string? mac)
     {
-        this.macAddress = mac;
+        if (mac.IsNullOrEmpty())
+        {
+            return;
+        }
+        this.macAddress = PhysicalAddress.Parse(mac);
     }
 
     public void SetIsAllowed(bool allowed)
@@ -114,35 +115,10 @@ public class Rule : IComparable<Rule>
 
    
     // comparers
-    public int CompareTo(Rule? other)
+    public override bool Equals(object? obj)
     {
-        if (this == other) return 1;
-        return -1;
-    }
-
-    public class CompareByIP : IComparer<IPAddress>
-    {
-        public int Compare(IPAddress? x, IPAddress? y)
-        {
-            if (x == null) return -1;
-            return x.ToString().CompareTo(y.ToString());
-        }
-    }
-
-    public class CompareByPort : IComparer<int>
-    {
-        public int Compare(int x, int y)
-        {
-            return x.CompareTo(y);
-        }
-    }
-
-    public class CompareByMACAddress : IComparer<string>
-    {
-        public int Compare(string? x, string? y)
-        {
-            return x.CompareTo(y);
-        }
+        if (this == obj) return true;
+        return false;
     }
 
     // operator overloading 

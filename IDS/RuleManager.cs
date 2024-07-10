@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -44,11 +45,29 @@ public class RuleManager
         }
     }
 
+    private class PhysicalAddressConverter : JsonConverter<PhysicalAddress>
+    {
+        public override PhysicalAddress? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            var ipString = reader.GetString();
+            return PhysicalAddress.Parse(ipString);
+        }
+
+        public override void Write(Utf8JsonWriter writer, PhysicalAddress value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString());
+        }
+    }
 
     public List<Rule> ReadRules()
     {
+        if (!Path.Exists(filePath))
+        {
+            WriteRules();
+        }
         var options = new JsonSerializerOptions();
         options.Converters.Add(new IPAddressConverter());
+        options.Converters.Add(new PhysicalAddressConverter());
 
         string jsonString = File.ReadAllText(this.filePath);
         return JsonSerializer.Deserialize<List<Rule>>(jsonString, options);
@@ -58,6 +77,7 @@ public class RuleManager
     {
         var options = new JsonSerializerOptions();
         options.Converters.Add(new IPAddressConverter());
+        options.Converters.Add(new PhysicalAddressConverter());
         options.WriteIndented = true;
 
         string jsonString = JsonSerializer.Serialize(this.rules, options);
@@ -70,16 +90,19 @@ public class RuleManager
 
         while (output != "no")
         {
-            Rule rule = new Rule();
             Console.Clear();
             Console.WriteLine("------------------------------------");
             Console.WriteLine("Set rule example:");
-            Console.WriteLine("Is Allowed: true/false");
-            Console.WriteLine("IPAddress: 192.168.1.0 / null");
+            Console.WriteLine("Is Allowed:  true/false");
+            Console.WriteLine("IPAddress:   192.168.1.0 / null");
             Console.WriteLine("Port number: 444 / null");
             Console.WriteLine("MAC Address: 00:00:00:00:00 / null");
             Console.WriteLine("------------------------------------");
-            Console.Write("IscAllowed? (Yes/No)");
+            Console.Write("Name of rule: ");
+            output = Console.ReadLine();
+            Rule rule = new Rule(output);
+
+            Console.Write("Is Allowed? (Yes/No) ");
             output = Console.ReadLine();
 
             if (output.ToLower() == "yes") rule.IsAllowed = true;
@@ -106,7 +129,7 @@ public class RuleManager
 
             WriteRules();
 
-            Console.WriteLine("Add more rules?(yes/no)");
+            Console.Write("Add more rules?(yes/no) ");
             output = Console.ReadLine();
         }
     }
@@ -116,18 +139,11 @@ public class RuleManager
         string output = "yes";
         while (output.ToLower() != "no")
         {
-            int index = 0;
             ShowRules();
             Console.WriteLine("-----------------------------------");
             Console.Write("Select rule number to remove: ");
-            try
-            {
-                index = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (System.FormatException)
-            {
-                break;
-            }
+
+            IntegerInput index = new IntegerInput();
 
             this.rules.RemoveAt(index);
             WriteRules();
@@ -140,11 +156,16 @@ public class RuleManager
     public void ShowRules()
     {
         int index = 0;
+        Console.WriteLine("+-----+--------------------+-----------------+-------+-------------------+-------+");
+        Console.WriteLine("| ID  | Rule Name          | IP Address      | Port  | MAC Address       | Allow |");
+        Console.WriteLine("+-----+--------------------+-----------------+-------+-------------------+-------+");
         foreach (Rule rule in this.rules)
         {
-            Console.Write("{0} - {1}", index, rule);
+            Console.WriteLine("| {0,-3} | {1,-18} | {2,-15} | {3,-5} | {4,-17} | {5,-5} |", index, rule.Name, rule.IP, rule.Port, rule.MACAddress, rule.IsAllowed);
             index++;
         }
+        Console.WriteLine("+-----+--------------------+-----------------+-------+-------------------+-------+");
+
     }
 
 }

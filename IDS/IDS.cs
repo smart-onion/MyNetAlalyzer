@@ -25,7 +25,7 @@ public class IDS : Component
 
     public override void Start(params object[] param)
     {
-        Console.Clear();
+        //Console.Clear();
         config.LoadConfiguration();
         Console.WriteLine("IDS started");
         trafficMonitor.CaptureTraffic();
@@ -42,11 +42,11 @@ public class IDS : Component
         this.config.FilePath = "NetDevice.json";
 
         Console.Clear();       
-        Console.WriteLine("Choose option:");
+        Console.WriteLine("+-- IDS Configurations --+");
         Console.WriteLine("1 - Select Network Device");
         Console.WriteLine("2 - Configure rules");
-
-        int select = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Select: ");
+        IntegerInput select = new IntegerInput();
 
         switch (select)
         {

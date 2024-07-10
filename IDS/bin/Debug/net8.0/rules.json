@@ -1,20 +1,30 @@
 [
   {
+    "Name": "test line",
     "IP": null,
-    "Port": null,
+    "Port": 90,
     "MACAddress": null,
     "IsAllowed": false
   },
   {
-    "IP": null,
-    "Port": null,
-    "MACAddress": null,
-    "IsAllowed": false
-  },
-  {
+    "Name": "test",
     "IP": "9.21.20.35",
+    "Port": 80,
+    "MACAddress": null,
+    "IsAllowed": false
+  },
+  {
+    "Name": "test1",
+    "IP": null,
     "Port": null,
-    "MACAddress": "",
+    "MACAddress": "06EB0C99BED4",
+    "IsAllowed": false
+  },
+  {
+    "Name": "mac",
+    "IP": null,
+    "Port": null,
+    "MACAddress": "94C69110622C",
     "IsAllowed": false
   }
 ]

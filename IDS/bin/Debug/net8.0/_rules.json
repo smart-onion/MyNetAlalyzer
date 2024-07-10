@@ -1,0 +1,38 @@
+[
+  {
+    "IP": null,
+    "Port": null,
+    "MACAddress": "",
+    "IsAllowed": false
+  },
+  {
+    "IP": null,
+    "Port": null,
+    "MACAddress": "",
+    "IsAllowed": false
+  },
+  {
+    "IP": "9.21.20.35",
+    "Port": null,
+    "MACAddress": "",
+    "IsAllowed": true
+  },
+  {
+    "IP": null,
+    "Port": null,
+    "MACAddress": "F64CA1D858AF",
+    "IsAllowed": false
+  },
+  {
+    "IP": "192.168.137.246",
+    "Port": null,
+    "MACAddress": "",
+    "IsAllowed": false
+  },
+  {
+    "IP": "192.168.137.132",
+    "Port": null,
+    "MACAddress": "",
+    "IsAllowed": false
+  }
+]

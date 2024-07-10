@@ -58,13 +58,14 @@ public class NetConf
 
     public void ConfigureRules()
     {
-        int select;
-        Console.WriteLine("Choose option:");
+        Console.Clear();
+        Console.WriteLine("+---- Rule Configuration Menu ----+");
+        this.ruleManager.ShowRules();
         Console.WriteLine("1 - Add rules");
         Console.WriteLine("2 - Remove rules");
-        Console.WriteLine("3 - Show All Rules");
+        Console.Write("Select: ");
 
-        select = Convert.ToInt32(Console.ReadLine());
+        IntegerInput select = new IntegerInput();
 
         switch (select)
         {
@@ -73,9 +74,6 @@ public class NetConf
                 break;
             case 2:
                 this.ruleManager.RemoveRules();
-                break;
-            case 3:
-                this.ruleManager.ShowRules();
                 break;
             default:
                 break;
@@ -104,7 +102,7 @@ public class NetConf
             Console.WriteLine("{0} - {1}\n", i, devices[i].Description);
         }
 
-        int select = Convert.ToInt32(Console.ReadLine());
+        IntegerInput select = new IntegerInput();
 
         this.device = devices[select];
 

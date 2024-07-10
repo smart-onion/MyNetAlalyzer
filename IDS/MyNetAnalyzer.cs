@@ -8,10 +8,7 @@ public class MyNetAnalyzer
 {
     Component component;
 
-    public MyNetAnalyzer() 
-    {
-        
-    }
+    public MyNetAnalyzer() { }
 
     public void Run()
     {
@@ -21,13 +18,15 @@ public class MyNetAnalyzer
             Console.WriteLine("----------------------------------------");
             DisplayComponents();
             SelectComponent();
-            SelectActionOnComponent();
+            if (component != null) SelectActionOnComponent();
+
         }
 
     }
 
     public void DisplayComponents()
     {
+        Console.Clear();
         Console.WriteLine("Available Components:");
         Console.WriteLine("1 - IDS");
         Console.WriteLine("2 - IP Scanner");
@@ -37,7 +36,7 @@ public class MyNetAnalyzer
     public void SelectComponent()
     {
         Console.Write("Select component: ");
-        int select = Convert.ToInt32(Console.ReadLine());
+        IntegerInput select = new IntegerInput();
         switch (select)
         {
             case 1:
@@ -50,6 +49,7 @@ public class MyNetAnalyzer
                 this.component = new PortScanner();
                 break;
             default:
+                Console.WriteLine("Wrong component!");
                 break;
         }
     }
@@ -61,8 +61,9 @@ public class MyNetAnalyzer
         Console.WriteLine("1 - Start");
         Console.WriteLine("2 - Configure");
         Console.WriteLine("3 - Stop");
-        Console.Write("Select action: ");
-        int select = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Select an action: ");
+        IntegerInput select = new IntegerInput();
+        Console.WriteLine(select); 
         switch (select)
         {
             case 1:
